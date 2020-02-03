@@ -1,0 +1,51 @@
+body{
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-title{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 16%;
+}
+
+h1{
+    
+    text-shadow: 6px 6px black;
+}
+h3{
+    text-shadow: 3px 3px black;
+}
+.btn-circle{
+    border-radius: 30px;
+}
+.btn{
+    display:inline-block;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    position: relative;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #f3bc46;
+    font-weight:bolder;
+}
+.btn-medium{
+    padding: 15p 30px;
+    font-size: 15px;
+    font-weight: 900;
+}
+.btn-theme-border-color{
+    border: 2px solid #f3bc46;
+    padding: 15px;
+}
+
+a:hover{
+    color: black;
+    background-color:#f3bc46 ;
+    border: 1px solid white;
+}
+
+#navbar{
+    margin-left: 29%;
+    margin-top: 4%;
+}
