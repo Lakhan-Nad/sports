@@ -8,7 +8,7 @@ if(!$conn){
  die('Could not Connect My Sql:' .mysqli_error($conn));
 }
 else{
-    echo "Connection Successful\n";
+    // echo "Connection Successful\n";
 }
 $db_selected = mysqli_select_db($conn,$db);
 
@@ -17,12 +17,12 @@ if (!$db_selected) {
   $sql = "CREATE DATABASE $db";
 
   if (mysqli_query($conn,$sql)) {
-      echo "Database $db created successfully\n";
+    //   echo "Database $db created successfully\n";
   } else {
       echo 'Error creating database: ' . mysqli_error($conn) . "\n";
   }
 }
 else{
-    echo "ALready Exist\n";
+    // echo "Already Exist\n";
 }
 ?>

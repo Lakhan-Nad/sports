@@ -103,6 +103,8 @@ form {
           echo "<br />";
           echo "<span class='answer'>".$obj->answer."</span>";
           echo "<br />";
+          echo "<br />";
+          echo "<hr />";
         }
         mysqli_free_result($rs);
       }

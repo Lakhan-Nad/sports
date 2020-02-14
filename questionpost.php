@@ -2,6 +2,7 @@
 session_start();
 include("database.php");
 extract($_POST);
+$question = trim($question);
 $create_faq = "CREATE TABLE FAQ(
     question varchar(200) PRIMARY KEY,
     answer varchar(200)
