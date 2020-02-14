@@ -15,22 +15,22 @@
       </h3>
       <div id="navbar">
         <a
-          href="about.html"
+          href="about.php"
           class="btn btn-medium btn-circle btn-theme-border-color"
           >ABOUT US</a
         >&nbsp;&nbsp;
         <a
-          href="tournament.html"
+          href="tournament.php"
           class="btn btn-medium btn-circle btn-theme-border-color"
           >TOURNAMENT</a
         >&nbsp;&nbsp;
         <a
-          href="contact.html"
+          href="contact.php"
           class="btn btn-medium btn-circle btn-theme-border-color"
           >CONTACT US</a
         >&nbsp;&nbsp;
         <a
-          href="faq.html"
+          href="faq.php"
           class="btn btn-medium btn-circle btn-theme-border-color"
           >FAQ</a
         >

@@ -1,10 +1,5 @@
-* {
-  box-sizing: border-box;
-}
-
 /* Slideshow container */
 .slideshow-container {
-  max-width: 2000px;
   position: relative;
   margin: 0px;
 }
@@ -13,9 +8,13 @@
 .mySlides {
   display: none;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 body {
   background: rgba(0, 0, 0, 0.9);
+  margin: 0px;
+  padding: 0px;
 }
 
 /* Number text (1/3 etc) */
@@ -45,8 +44,10 @@ body {
 }
 
 .mySlides > img {
-  height: 720px;
+  height: 730px;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* Fading animation */
@@ -82,7 +83,7 @@ body {
 
 .blurshow {
   width: 100%;
-  height: 720px;
+  height: 730px;
   background: rgba(0, 0, 0, 0.8);
   z-index: 2;
   position: absolute;
@@ -96,9 +97,8 @@ body {
   padding-top: 30px;
   padding-bottom: 30px;
   float: left;
-  display: inline-block;
   background-color: transparent;
-  width: 500px;
+  width: 400px;
   height: 300px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
