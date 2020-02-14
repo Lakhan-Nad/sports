@@ -4,6 +4,8 @@
 body {
   background-color: #1a354b;
   text-align: center;
+  margin: 0px;
+  padding: 0px;
 }
 #commentarea {
   margin: 0px;
@@ -38,6 +40,7 @@ form {
   text-align: center;
 }
 .faqs {
+  margin-top: 20px;
   display: inline-block;
   width: 1180px;
   height: 600px;
@@ -59,4 +62,15 @@ form {
   color: white;
   text-align: right;
   margin-bottom: 20px;
+}
+.message {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 5px;
+  color: white;
+  margin: 0px;
 }
