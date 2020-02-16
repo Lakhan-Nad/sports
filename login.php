@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['email'])){
+  header("Location: /OSP%20Project/sports/usermenu.php");
+}
 ?>
 <!DOCTYPE html>
 <html>

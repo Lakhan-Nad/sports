@@ -168,6 +168,19 @@ body {
   color: darkblue;
 }
 
+.flip-card-back > form > button {
+  background:none;
+  color: white;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10%;
+}
+
+.flip-card-back > form > button:hover {
+  background-color: white;
+  color: darkblue;
+}
+
 .content > h1 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 50px;
@@ -259,11 +272,7 @@ body {
             view for various tournaments.
           </p>
           <br />
-          <?php
-          if(!isset($_SESSION['email'])){
-            echo '<a href="login.php">REGISTER</a>';
-          }
-          ?>
+          <a href="register_tournament.php">REGISTER</a>
         </div>
         <div class="content2">
           <p>
@@ -305,7 +314,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: Outdoor Stadium</p>
             <br />
-            <a href="cricket.php">Register Now</a>
+            <a href="cricket.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="cricket" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -320,7 +334,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: Football Stadium</p>
             <br />
-            <a href="football.php">Register Now</a>
+            <a href="football.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="football" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -335,7 +354,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: Indoor Gym</p>
             <br />
-            <a href="tabletennis.php">Register Now</a>
+            <a href="tabletennis.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="tabletennis" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -350,7 +374,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: Outdoor Stadium</p>
             <br />
-            <a href="hockey.php">Register Now</a>
+            <a href="hockey.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="hockey" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -365,7 +394,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: VIT Basketball Court</p>
             <br />
-            <a href="basketball.php">Register Now</a>
+            <a href="basketball.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="basketball" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -380,7 +414,12 @@ body {
             <p>End Date: 10-02-2020</p>
             <p>Venue: Hostel Swimming Pool</p>
             <br />
-            <a href="swimming.php">Register Now</a>
+            <a href="swimming.php">View Details</a>
+            <br /><br />
+            <form action="register_sport.php" method="POST">
+              <input type="hidden" name="sport" value="swimming" />
+              <button type="submit">Register Now</button>
+            </form>
           </div>
         </div>
       </div>

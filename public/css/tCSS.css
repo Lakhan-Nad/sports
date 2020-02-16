@@ -158,6 +158,19 @@ body {
   color: darkblue;
 }
 
+.flip-card-back > form > button {
+  background: none;
+  color: white;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10%;
+}
+
+.flip-card-back > form > button:hover {
+  background-color: white;
+  color: darkblue;
+}
+
 .content > h1 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 50px;
