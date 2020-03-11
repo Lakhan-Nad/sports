@@ -13,4 +13,5 @@ else{
     $_SESSION['message'] = "Question Successfully Deleted";
 	header("Location: /OSP%20Project/sports/answer_faq.php");
 }
+mysqli_close($conn);
 ?>

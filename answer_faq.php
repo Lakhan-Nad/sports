@@ -73,6 +73,7 @@ session_start();
         }
         echo "</ol>";
         mysqli_free_result($rs);
+        mysqli_close($conn);
       }
     ?>
     <span class="message">

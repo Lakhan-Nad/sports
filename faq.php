@@ -108,6 +108,7 @@ form {
         }
         mysqli_free_result($rs);
       }
+      mysqli_close($conn);
     ?>
     </div>
     <br />

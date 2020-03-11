@@ -27,4 +27,5 @@ if($rs){
 	$_SESSION['message'] = "Unable to Login: ".mysqli_error($conn);
 	header("Location: /OSP%20Project/sports/login.php");
 }
+mysqli_close($conn);
 ?>

@@ -33,4 +33,5 @@ else{
 }
 // mysqli_query($conn,"DELETE FROM FAQ");
 // mysqli_query($conn,"DROP TABLE FAQ");
+mysqli_close($conn);
 ?>

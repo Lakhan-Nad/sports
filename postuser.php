@@ -38,4 +38,5 @@ else{
 }
 // mysqli_query($conn,"DELETE FROM USER");
 // mysqli_query($conn,"DROP TABLE USER");
+mysqli_close($conn);
 ?>

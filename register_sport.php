@@ -11,4 +11,5 @@ else{
     $_SESSION['message'] = "Login Or Signin First";
     header("Location: /OSP%20Project/sports/login.php");
 }
+mysqli_close($conn);
 ?>
