@@ -6,7 +6,7 @@ $rs=mysqli_query($conn,"select * from user where email='$email'");
 if($rs){
     if(mysqli_num_rows($rs)!=0){
         $obj = mysqli_fetch_object($rs);
-        if($obj->pass == $pass){
+        if(password_verify($pass,$obj->pass)){
             $_SESSION['email'] = $email;
 	        header("Location: /OSP%20Project/sports/usermenu.php");
         }

@@ -5,7 +5,7 @@ $create_user = "CREATE TABLE USER(
     email varchar(50) PRIMARY KEY,
     firstName varchar(30) NOT NULL,
     lastName varchar(30) NOT NULL,
-    pass varchar(30) NOT NULL,
+    pass varchar(256) NOT NULL,
     phone varchar(10) NOT NULL,
     check(phone REGEXP '^[6789][0-9]{9}$')
     )";
@@ -25,7 +25,9 @@ if (mysqli_num_rows($rs)>0)
 	header("Location: /OSP%20Project/sports/login.php");
 	exit();
 }
-$query="insert into user(firstName,lastName,email,pass,phone) values('$firstName','$lastName','$email','$pass','$phone')";
+$pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+echo($pass_hash);
+$query="insert into user(firstName,lastName,email,pass,phone) values('$firstName','$lastName','$email','$pass_hash','$phone')";
 $rs=mysqli_query($conn,$query);
 if($rs){
 	$_SESSION['email'] = $email;
