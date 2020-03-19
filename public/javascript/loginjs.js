@@ -21,3 +21,9 @@ $('.login-reg-panel input[type="radio"]').on("change", function() {
     $(".register-show").removeClass("show-log-panel");
   }
 });
+
+function passToText(strelem) {
+  let passField = document.getElementById(strelem);
+  if (passField.type == "text") passField.type = "password";
+  else passField.type = "text";
+}

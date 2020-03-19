@@ -187,7 +187,8 @@ a {
           <h2>LOGIN</h2>
           <form method="POST" action="loginuser.php">
             <input type="text" placeholder="Email" name="email" />
-            <input type="password" placeholder="Password" name="pass" />
+            <input type="password" placeholder="Password" name="pass" id="loginpassword"/>
+            <input type="button" onclick="passToText('loginpassword')" value="See/Hide Password" />
             <input type="submit" value="Login" class="submitbutton"/>
           </form>
         </div>
@@ -197,7 +198,8 @@ a {
             <input type="text" placeholder="FirstName" name="firstName" maxlength="30"/>
             <input type="text" placeholder="LastName" name="lastName" maxlength="30"/>
             <input type="text" placeholder="Email" name="email"/>
-            <input type="password" placeholder="Password" name="pass"/>
+            <input type="password" placeholder="Password" name="pass" id="regpassword"/>
+            <input type="button" onclick="passToText('regpassword')" value="See/Hide Password" />
             <input type="text" placeholder="Mobile" name="phone" maxlength="10"/>
             <input type="submit" value="Register" class="submitbutton"/>
           </form>
