@@ -46,7 +46,7 @@ session_start();
 
 <body>
     <?php
-include "database.php";
+include __DIR__ . "database.php";
 $rs = mysqli_query($conn, "select * from faq");
 if (!$rs or mysqli_num_rows($rs) == 0) {
     echo "<h3>" . "NO QUESTIONS TO BE ANSWERED" . "</h3>";

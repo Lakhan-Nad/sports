@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "database.php";
+require __DIR__ . "database.php";
 $create_user = "CREATE TABLE USER(
     email varchar(50) PRIMARY KEY,
     firstName varchar(30) NOT NULL,
@@ -20,7 +20,7 @@ $rs = mysqli_query($conn, "select * from user where email='$email'");
 if (mysqli_num_rows($rs) > 0) {
     unset($_SESSION['email']);
     $_SESSION['message'] = "User Already Exist";
-    header("Location: /OSP%20Project/sports/login.php");
+    header("Location:" . __DIR__ . "/login.php");
     exit();
 }
 $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
@@ -29,11 +29,11 @@ $query = "insert into user(firstName,lastName,email,pass,phone) values('$firstNa
 $rs    = mysqli_query($conn, $query);
 if ($rs) {
     $_SESSION['email'] = $email;
-    header("Location: /OSP%20Project/sports/usermenu.php");
+    header("Location:" . __DIR__ . "/usermenu.php");
 } else {
     unset($_SESSION['email']);
     $_SESSION['message'] = "Unable to Register: " . mysqli_error($conn);
-    header("Location: /OSP%20Project/sports/login.php");
+    header("Location: " . __DIR__ . "/login.php");
 }
 // mysqli_query($conn,"DELETE FROM USER");
 // mysqli_query($conn,"DROP TABLE USER");

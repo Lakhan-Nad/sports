@@ -1,8 +1,9 @@
 <?php
-$url      = '127.0.0.1:3306';
-$username = 'root';
-$password = '';
-$db       = 'MYDB';
+require __DIR__ . "configVars.php";
+$url      = DB_URL;
+$username = DB_USERNAME;
+$password = DB_PASSWORD;
+$db       = DB_NAME;
 $conn     = mysqli_connect($url, $username, $password);
 if (!$conn) {
     die('Could not Connect My Sql:' . mysqli_error($conn));
