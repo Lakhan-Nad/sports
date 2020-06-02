@@ -1,26 +1,79 @@
 <?php
-require __DIR__ . "configVars.php";
-$url      = DB_URL;
-$username = DB_USERNAME;
-$password = DB_PASSWORD;
-$db       = DB_NAME;
-$conn     = mysqli_connect($url, $username, $password);
-if (!$conn) {
-    die('Could not Connect My Sql:' . mysqli_error($conn));
-} else {
-    // echo "Connection Successful\n";
-}
-$db_selected = mysqli_select_db($conn, $db);
 
-if (!$db_selected) {
-    // If we couldn't, then it either doesn't exist, or we can't see it.
-    $sql = "CREATE DATABASE $db";
+class Database
+{
+    protected $dbName;
+    protected $dsn;
+    protected $error;
+    protected $stmt;
+    protected $handler;
 
-    if (mysqli_query($conn, $sql)) {
-        //   echo "Database $db created successfully\n";
-    } else {
-        echo 'Error creating database: ' . mysqli_error($conn) . "\n";
+    public function __construct(string $driverCode, string $host, string $username, string $password, string $dbname, array $driver_options = array())
+    {
+        $options = array(
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE    => PDO::ERRMODE_EXCEPTION,
+        );
+        foreach ($driver_options as $key => $value) {
+            $options[$key] = $value;
+        }
+        $this->dsn = $driverCode . ":host=" . $host . ";dbname=" . $dbname;
+        try {
+            $this->handler = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            echo $this->error;
+        }
     }
-} else {
-    // echo "Already Exist\n";
+    public function prepare(string $sql)
+    {
+        $this->stmt = $this->handler->prepare($sql);
+    }
+    public function query(string $sql): PDOStatement
+    {
+        $this->stmt = $this->prepare($sql)->execute();
+    }
+    public function execute()
+    {
+        $this->stmt->execute($data);
+    }
+    public function fetchALL(): array
+    {
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function fetch(): array
+    {
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function fullExecute(string $sql)
+    {
+        try {
+            $stmt = $this->handler->prepare($sql)->execute();
+            return true;
+        } catch (Throwable $e) {
+            throw $e;
+        }
+    }
+    public function fullFetch(string $sql)
+    {
+        try {
+            $stmt = $this->handler->prepare($sql);
+            $s    = $stmt->execute();
+            if ($s) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return array();
+            }
+        } catch (Throwable $e) {
+            throw $e;
+        }
+    }
+    public function prepareAndReturn($sql)
+    {
+        $stmt = $this->handler->prepare($sql);
+        if ($stmt instanceof PDOStatement) {
+            return $stmt;
+        }
+        return false;
+    }
 }

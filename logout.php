@@ -1,5 +1,11 @@
 <?php
-session_start();
-unset($_SESSION['email']);
-$_SESSION['message'] = "Logout Successfull";
-header("Location:" . "/login.php");
+require_once __DIR__ . "/utils.php";
+
+function logout()
+{
+    session_start();
+    unset($_SESSION['email']);
+}
+
+logout();
+redirect("login.php");

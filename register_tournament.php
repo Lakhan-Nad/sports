@@ -1,7 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION['email'])) {
-    header("Location: " . "/usermenu.php");
+require_once __DIR__ . "/utils.php";
+
+if (forwardAuth()) {
+    redirect("usermenu.php");
 } else {
-    header("Location: " . "/login.php");
+    redirect("login.php");
 }

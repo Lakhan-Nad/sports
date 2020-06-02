@@ -19,7 +19,7 @@ body {
   border-radius: 10px;
   outline: none;
 }
-button {
+input[type="submit"] {
   width: 90px;
   height: 30px;
   font-weight: bold;

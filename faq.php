@@ -1,6 +1,56 @@
 <?php
-session_start();
+require_once __DIR__ . "/database.php";
+require_once __DIR__ . "/configVars.php";
+
+$db          = new Database(...$DB_CONFIG);
+$createCheck = false;
+$message     = "";
+
+function createTable()
+{
+    global $createCheck;
+    $createCheck = true;
+
+    $create_faq = "CREATE TABLE IF NOT EXISTS faq(
+        question varchar(200) PRIMARY KEY,
+        answer varchar(200)
+        )";
+    $res = $db->fullExecute($create_faq);
+}
+
+$data;
+$rs = $db->fullFetch("SELECT * FROM faq WHERE answer IS NOT NULL");
+if (!$rs) {
+    $data = array();
+} else {
+    $data = $rs;
+}
+
+if (isset($_POST["submitQuestion"])) {
+    if (!$createCheck) {
+        createTable();
+    }
+    $data;
+    $question = trim($_POST["question"]);
+
+    if (strlen($question) == 0) {
+        $message = "Unable to add Empty Question";
+    } else {
+        $rs = $db->fullFetch("SELECT * FROM faq WHERE question='$question'");
+        if (count($rs) > 0) {
+            $message = "Same Question Already Posted";
+        } else {
+            $rs = $db->fullExecute("INSERT INTO faq(question) VALUES('$question')");
+            if ($rs) {
+                $message = "Question Successfully Posted";
+            } else {
+                $message = "Unable to POST Question";
+            }
+        }
+    }
+}
 ?>
+
 <html>
 
 <head>
@@ -16,39 +66,27 @@ session_start();
     </div>
     <div class="faqs">
         <?php
-require "database.php";
-$rs = mysqli_query($conn, "select * from faq where answer is not null");
-if (!$rs or mysqli_num_rows($rs) == 0) {
-    echo "<span class='question'>" . "NO QUESTIONS ANSWERED YET" . "</span>";
+if (count($data) == 0) {
+    echo "<span class='question'>NO QUESTIONS ANSWERED YET</span>";
 } else {
-    while ($obj = mysqli_fetch_object($rs)) {
-        echo "<span class='question'>" . $obj->question . "</span>";
+    foreach ($data as $qa) {
+        echo "<span class='question'>" . $qa["question"] . "</span>";
         echo "<br />";
-        echo "<span class='answer'>" . $obj->answer . "</span>";
+        echo "<span class='answer'>" . $qa["answer"] . "</span>";
         echo "<br />";
         echo "<br />";
         echo "<hr />";
     }
-    mysqli_free_result($rs);
-}
-mysqli_close($conn);
-?>
+}?>
     </div>
     <br />
     <br />
     <br />
-    <form method="POST" action="questionpost.php">
+    <form method="POST">
         <textarea name="question" id="commentarea" placeholder="Add your question here.."></textarea>
-        <button type="submit">Submit</button>
+        <input type="submit" name="submitQuestion" value="Submit">
     </form>
-    <span class="message">
-        <?php
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-?>
-    </span>
+    <span class="message"><?=htmlentities($message)?></span>
 </body>
 
 </html>

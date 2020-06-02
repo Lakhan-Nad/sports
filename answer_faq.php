@@ -1,5 +1,48 @@
 <?php
-session_start();
+require_once __DIR__ . "/database.php";
+require_once __DIR__ . "/configVars.php";
+$db      = new Database(...$DB_CONFIG);
+$message = "";
+$data;
+$rs = $db->fullFetch("SELECT * FROM faq");
+
+if (!$rs) {
+    $data = array();
+} else {
+    foreach ($rs as $obj) {
+        $obj["submitName"] = $obj["answer"] ? "Save Changes" : "Submit Answer";
+        $obj["answer"]     = $obj["answer"] ?? "";
+        $data[]            = $obj;
+    }
+}
+
+if (isset($_POST["answerSubmit"])) {
+    $question = trim($_POST["question"]);
+    $answer   = trim($_POST["answer"]);
+    $data;
+
+    if (strlen($question) == 0 || strlen($answer) == 0) {
+        $message = "Unable to add Empty Answer";
+    } else {
+
+        $rs = $db->fullExecute("UPDATE faq SET answer='$answer' WHERE question='$question'");
+
+        if (!$rs) {
+            $message = "Unable to POST Answer";
+        } else {
+            $message = "Answer Successfully Updated";
+        }
+    }
+} else if (isset($_POST["delQuestion"])) {
+    $question = trim($POST_["question"]);
+    $rs       = $db->fullExecute("DELETE FROM faq WHERE question='$question'");
+    if (!$rs) {
+        $message = "Unable to POST Answer";
+    } else {
+        $message = "Question Successfully Deleted";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,85 +52,29 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Answer FAQs</title>
     <link rel="stylesheet" type="text/css" href="./public/css/answer_faq.css" />
-    <style>
-    /* body {
-        background-color: #1a354b;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    textarea {
-        width: 300px;
-        height: 100px;
-    }
-
-    .message {
-        width: 100%;
-        position: absolute;
-        bottom: 20px;
-        display: block;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 5px;
-        color: white;
-        margin: 0px;
-    }
-
-    li {
-        color: #f3bc46;
-        font-size: 20px;
-    }
-
-    h1 {
-        color: white;
-    }
-    </style> */
 </head>
 
 <body>
-    <?php
-include __DIR__ . "database.php";
-$rs = mysqli_query($conn, "select * from faq");
-if (!$rs or mysqli_num_rows($rs) == 0) {
-    echo "<h3>" . "NO QUESTIONS TO BE ANSWERED" . "</h3>";
-} else {
+    <?php if (count($data) == 0) {echo "<h3>" . "NO QUESTIONS TO BE ANSWERED" . "</h3>";}?>
+    <?php if (count($data) > 0) {
     echo "<ol>";
-    while ($obj = mysqli_fetch_object($rs)) {
-        $value;
-        $submitName;
-        if (!$obj->answer) {
-            $value      = "";
-            $submitName = "Submit Answer";
-        } else {
-            $value      = $obj->answer;
-            $submitName = "Save Changes";
-        }
-        echo "<li>" . $obj->question . "</li>";
+    foreach ($data as $obj) {
+        echo "<li>" . $obj["question"] . "</li>";
         echo "<br />";
-        echo "<form method='POST' action='answerpost.php'>";
-        echo "<input type='hidden' name='question' value='$obj->question' />";
-        echo "<textarea name='answer'>$value</textarea><br />";
-        echo "<input type='submit' value='$submitName' />";
+        echo "<form method='POST'>";
+        echo "<input type='hidden' name='question' value='" . $obj['question'] . "' />";
+        echo "<input type='text' name='answer' value='" . $obj['answer'] . "'><br />";
+        echo "<input type='submit' name='answerSubmit' value='" . $obj["submitName"] . "' />";
         echo "</form>";
-        echo "<form method='POST' action='deletequestion.php'>";
-        echo "<input type='hidden' name='question' value='$obj->question' />";
-        echo "<input type='submit' value='Delete This Question' />";
+        echo "<form method='POST'>";
+        echo "<input type='hidden' name='question' value='" . $obj["question"] . "' />";
+        echo "<input type='submit' name='delQuestion' value='Delete This Question' />";
         echo "</form>";
         echo '<br />';
     }
     echo "</ol>";
-    mysqli_free_result($rs);
-    mysqli_close($conn);
-}
-?>
-    <span class="message">
-        <?php
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-?>
-    </span>
+}?>
+    <span class="message"><?=htmlentities($message)?></span>
 </body>
 
 </html>
