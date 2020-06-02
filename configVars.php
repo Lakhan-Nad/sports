@@ -2,7 +2,7 @@
 
 define('DB_DRIVER', "mysql", false);
 define('DB_HOST', 'localhost', false);
-define('DB_USERNAME', 'newuser', false);
+define('DB_USERNAME', 'userPHP', false);
 define('DB_PASSWORD', '', false);
 define('DB_NAME', 'MYDB', false);
 

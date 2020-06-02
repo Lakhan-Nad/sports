@@ -26,7 +26,11 @@ function newUser(array $userData)
 }
 
 if (isset($_POST["postUser"])) {
+
+    unset($_POST["postUser"]);
+
     $data = newuser($_POST);
+
     if ($data["status"]) {
         session_start();
         $_SESSION["email"] = $_POST["email"];
@@ -34,11 +38,15 @@ if (isset($_POST["postUser"])) {
     } else {
         $message = $data["message"];
     }
+
 } else if (isset($_POST["loginUser"])) {
+
+    unset($_POST["loginUser"]);
+
     if (User::verifyUser($_POST["email"], $_POST["pass"])) {
         session_start();
         $_SESSION["email"] = $_POST["email"];
-        redirect("user");
+        redirect("usermenu.php");
     } else {
         if (User::alreadyExists($_POST["email"])) {
             $message = "Wrong Password";
@@ -80,7 +88,7 @@ if (isset($_POST["postUser"])) {
         <div class="white-panel">
             <div class="login-show">
                 <h2>LOGIN</h2>
-                <form method="POST" action="loginuser.php">
+                <form method="POST">
                     <input type="text" placeholder="Email" name="email" />
                     <input type="password" placeholder="Password" name="pass" id="loginpassword" />
                     <input type="button" onclick="passToText('loginpassword')" value="See/Hide Password" />

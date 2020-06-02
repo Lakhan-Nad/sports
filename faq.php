@@ -2,9 +2,8 @@
 require_once __DIR__ . "/database.php";
 require_once __DIR__ . "/configVars.php";
 
-$db          = new Database(...$DB_CONFIG);
-$createCheck = false;
-$message     = "";
+$db      = new Database(...$DB_CONFIG);
+$message = "";
 
 function createTable()
 {
@@ -27,9 +26,7 @@ if (!$rs) {
 }
 
 if (isset($_POST["submitQuestion"])) {
-    if (!$createCheck) {
-        createTable();
-    }
+
     $data;
     $question = trim($_POST["question"]);
 
@@ -37,6 +34,7 @@ if (isset($_POST["submitQuestion"])) {
         $message = "Unable to add Empty Question";
     } else {
         $rs = $db->fullFetch("SELECT * FROM faq WHERE question='$question'");
+
         if (count($rs) > 0) {
             $message = "Same Question Already Posted";
         } else {

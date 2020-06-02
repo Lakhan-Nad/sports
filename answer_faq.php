@@ -17,6 +17,8 @@ if (!$rs) {
 }
 
 if (isset($_POST["answerSubmit"])) {
+    unset($_POST["answerSubmit"]);
+
     $question = trim($_POST["question"]);
     $answer   = trim($_POST["answer"]);
     $data;
@@ -34,7 +36,9 @@ if (isset($_POST["answerSubmit"])) {
         }
     }
 } else if (isset($_POST["delQuestion"])) {
-    $question = trim($POST_["question"]);
+    unset($_POST["delQuestion"]);
+
+    $question = trim($_POST["question"]);
     $rs       = $db->fullExecute("DELETE FROM faq WHERE question='$question'");
     if (!$rs) {
         $message = "Unable to POST Answer";

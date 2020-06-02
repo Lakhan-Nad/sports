@@ -4,7 +4,8 @@ $root = dirname(__FILE__);
 
 function redirect($r)
 {
-    header("Location: " . $root . "/" . $r);
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: " . $r);
 }
 
 function forwardAuth()

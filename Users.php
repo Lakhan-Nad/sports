@@ -7,7 +7,6 @@ class User
 {
     public static $db;
     protected static $insertStatement;
-    protected static $prepared;
     public static function createUserDB()
     {
         $create_command = "CREATE TABLE IF NOT EXISTS user(
@@ -27,24 +26,13 @@ class User
         $rs               = User::$db->prepareAndReturn($insert_statement);
         if ($rs) {
             User::$insertStatement = $rs;
-            User::$prepared        = true;
         }
     }
-    public static function insertData($userData, $recFactor = 0)
+    public static function insertData($userData)
     {
-        if (User::$prepared) {
-            $userData["pass"] = User::hashPass($userData["pass"]);
-            $rs               = User::$insertStatement->execute($userData);
-            return $rs;
-        } else {
-            if ($recFactor < 2) {
-                User::createUserDB();
-                User::prepare_insert();
-                return User::insertData($userData, $recFactor + 1);
-            } else {
-                return false;
-            }
-        }
+        $userData["pass"] = User::hashPass($userData["pass"]);
+        $rs               = User::$insertStatement->execute($userData);
+        return $rs;
     }
     protected static function hashPass(string $pass): string
     {
@@ -92,3 +80,4 @@ class User
 }
 
 User::$db = new Database(...$DB_CONFIG);
+User::prepare_insert();
