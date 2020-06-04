@@ -66,8 +66,8 @@ if (isset($_POST["answerSubmit"])) {
         echo "<li>" . $obj["question"] . "</li>";
         echo "<br />";
         echo "<form method='POST'>";
-        echo "<input type='hidden' name='question' value='" . $obj['question'] . "' />";
-        echo "<input type='text' name='answer' value='" . $obj['answer'] . "'><br />";
+        echo "<input type='hidden' name='question' value='" . htmlentities($obj['question']) . "' />";
+        echo "<input type='text' name='answer' value='" . htmlentities($obj['answer']) . "'><br />";
         echo "<input type='submit' name='answerSubmit' value='" . $obj["submitName"] . "' />";
         echo "</form>";
         echo "<form method='POST'>";

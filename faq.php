@@ -68,9 +68,9 @@ if (count($data) == 0) {
     echo "<span class='question'>NO QUESTIONS ANSWERED YET</span>";
 } else {
     foreach ($data as $qa) {
-        echo "<span class='question'>" . $qa["question"] . "</span>";
+        echo "<span class='question'>" . htmlentities($qa["question"]) . "</span>";
         echo "<br />";
-        echo "<span class='answer'>" . $qa["answer"] . "</span>";
+        echo "<span class='answer'>" . htmlentities($qa["answer"]) . "</span>";
         echo "<br />";
         echo "<br />";
         echo "<hr />";
