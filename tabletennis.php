@@ -1,3 +1,10 @@
+<?php
+
+require_once __DIR__ . "/sportsData.php";
+$sport        = "tabletennis";
+$participants = findBySport($sport);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +23,7 @@
     <div class="navdivs">
         <button class="navs selected" onclick="currentdisp(1)">About</button>
         <button class="navs" onclick="currentdisp(2)">Rules & Regulations</button>
-        <button class="navs" onclick="currentdisp(3)">Teams</button>
+        <button class="navs" onclick="currentdisp(3)">Participants</button>
     </div>
     <div class="items active">
         <div class="content">
@@ -52,21 +59,18 @@
             </p>
         </div>
     </div>
-
     <div class="items">
         <div class="content">
             <table id="t01">
                 <tr>
-                    <th>Team ID</th>
-                    <th>Team Name</th>
-                    <th>Team Leader</th>
-                    <th>College Name</th>
+                    <th>Email of Participant</th>
                 </tr>
                 <tr>
-                    <td>H0001</td>
-                    <td>Xyz</td>
-                    <td>Smith</td>
-                    <td>Vellore institute of technology</td>
+                    <?php
+foreach ($participants as $x) {
+    echo "<td>" . htmlentities($x["user"]) . "</td>";
+}
+?>
                 </tr>
             </table>
         </div>
