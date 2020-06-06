@@ -1,5 +1,7 @@
 <?php
+require_once __DIR__ . "/sportsData.php";
 session_start();
+$sports = findAllSport();
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,126 +86,33 @@ session_start();
         <span class="dot"></span>
     </div>
     <div class="tournaments">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/cricket.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Cricket</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: Outdoor Stadium</p>
-                    <br />
-                    <a href="cricket.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="cricket" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/football.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Football</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: Football Stadium</p>
-                    <br />
-                    <a href="football.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="football" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/tt.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Table Tennis</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: Indoor Gym</p>
-                    <br />
-                    <a href="tabletennis.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="tabletennis" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/hockey.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Hockey</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: Outdoor Stadium</p>
-                    <br />
-                    <a href="hockey.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="hockey" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/basketball.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Basketball</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: VIT Basketball Court</p>
-                    <br />
-                    <a href="basketball.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="basketball" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="./public/images/swimming.jpg" alt="Avatar" />
-                </div>
-                <div class="flip-card-back">
-                    <h1>Swimming</h1>
-                    <p>Start Date: 04-02-2020</p>
-                    <p>End Date: 10-02-2020</p>
-                    <p>Venue: Hostel Swimming Pool</p>
-                    <br />
-                    <a href="swimming.php">View Details</a>
-                    <br /><br />
-                    <form action="register_sport.php" method="POST">
-                        <input type="hidden" name="sport" value="swimming" />
-                        <button type="submit">Register Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php if (count($sports) == 0) {
+    echo "<h1>No Sports Available</h1>";
+
+} else {
+    foreach ($sports as $sport) {
+        echo "<div class='flip-card'>";
+        echo "<div class='flip-card-inner'>";
+        echo "<div class='flip-card-front'>";
+        echo "<img src=." . $sport["imgPath"] . " alt='Avatar' />";
+        echo "</div>";
+        echo "<div class='flip-card-back'>";
+        echo "<h1>" . $sport["nameVal"] . "</h1>";
+        echo "<p>Start Date: " . $sport["startDate"] . "</p>";
+        echo "<p>End Date: " . $sport["endDate"] . "</p>";
+        echo "<p>Venue: " . $sport["venue"] . "</p>";
+        echo "<br />";
+        echo "<a href=" . $sport["sportName"] . ".php" . ">View Details</a>";
+        echo "<br /><br />";
+        echo "<form action='register_sport.php' method='POST'>";
+        echo "<input type='hidden' name='sport' value=" . $sport["sportName"] . " />";
+        echo "<button type='submit'>Register Now</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+    }
+}?>
     </div>
     <script src="./public/javascript/myScript.js"></script>
 </body>

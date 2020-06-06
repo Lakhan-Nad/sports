@@ -18,7 +18,10 @@ $participants = findBySport($sport);
 <body>
     <div class="head">
         <img src="./public/images/hockey.jpg" class="coverimg" alt="hockey" />
-
+        <form action='register_sport.php' method='POST'>
+            <input type='hidden' name='sport' value='hockey' />
+            <input type='submit' value='REGISTER'>
+        </form>
     </div>
     <div class="navdivs">
         <button class="navs selected" onclick="currentdisp(1)">About</button>
@@ -66,10 +69,6 @@ $participants = findBySport($sport);
                 in any way. Hockey is a non-contact sport and all fouls result in a free hit or a ‘penalty corner’
                 for the non-offending team depending on where the infringement took place and the severity of the
                 foul.<br>
-
-
-
-
             </p>
         </div>
     </div>
@@ -79,13 +78,11 @@ $participants = findBySport($sport);
                 <tr>
                     <th>Email of Participant</th>
                 </tr>
-                <tr>
-                    <?php
+                <?php
 foreach ($participants as $x) {
-    echo "<td>" . htmlentities($x["user"]) . "</td>";
+    echo "<tr><td>" . htmlentities($x["user"]) . "</td></tr>";
 }
 ?>
-                </tr>
             </table>
         </div>
     </div>

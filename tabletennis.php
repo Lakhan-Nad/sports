@@ -17,8 +17,11 @@ $participants = findBySport($sport);
 
 <body>
     <div class="head">
-        <img src="./public/images/tt.jpg" class="coverimg" alt="football" />
-
+        <img src="./public/images/tt.jpg" class="coverimg" alt="tabletennis" />
+        <form action='register_sport.php' method='POST'>
+            <input type='hidden' name='sport' value='tabletennis' />
+            <input type='submit' value='REGISTER'>
+        </form>
     </div>
     <div class="navdivs">
         <button class="navs selected" onclick="currentdisp(1)">About</button>
@@ -65,13 +68,11 @@ $participants = findBySport($sport);
                 <tr>
                     <th>Email of Participant</th>
                 </tr>
-                <tr>
-                    <?php
+                <?php
 foreach ($participants as $x) {
-    echo "<td>" . htmlentities($x["user"]) . "</td>";
+    echo "<tr><td>" . htmlentities($x["user"]) . "</td></tr>";
 }
 ?>
-                </tr>
             </table>
         </div>
     </div>

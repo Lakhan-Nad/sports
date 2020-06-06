@@ -22,6 +22,12 @@ foreach ($sports as $x) {
     $sportsData[] = $data;
 }
 
+if (count($sportsData) == 0) {
+    $head = "REGISTER YOUR FIRST SPORT";
+} else {
+    $head = "REGISTERED SPORTS";
+}
+
 // print_r($sportsData);
 
 ?>
@@ -36,7 +42,7 @@ foreach ($sports as $x) {
 
 <body>
     <div>
-        <img src="/public/images/demo.jpg">
+        <img src="/public/images/demo.jpg" id="profile">
         <div id="participantDescription">
             <h2><?=htmlentities($fullname)?></h2>
             <h2><?=htmlentities($email)?></h2>
@@ -47,16 +53,24 @@ foreach ($sports as $x) {
         </button>
     </div>
     <div>
-        <h1 style="text-align: center; padding-top: 50px; color: black; font-size: 50px;"><B>Registered Sports</B></h1>
+        <h1><?=htmlentities($head)?></h1>
         <?php
-foreach ($sportsData as $x) {
-    echo "<img id='sportPhoto' src=." . htmlentities($x["imgPath"]) . ">";
-    echo "<div id='details'>";
-    echo "<h2>Name:" . htmlentities($x["sportName"]) . "</h2>";
-    echo "<h2>Start Date:" . htmlentities($x["startDate"]) . "</h2>";
-    echo "<h2>End Date:" . htmlentities($x["endDate"]) . "</h2>";
-    echo "<h2>Venue:" . htmlentities($x["venue"]) . "</h2>";
-    echo "</div>";
+if (count($sportsData) > 0) {
+    echo "<table>";
+    foreach ($sportsData as $x) {
+        echo "<tr>";
+        echo "<td>";
+        echo "<img id='sportPhoto' src=." . htmlentities($x["imgPath"]) . ">";
+        echo "</td>";
+        echo "<td>";
+        echo "<h2>Name:" . htmlentities($x["nameVal"]) . "</h2>";
+        echo "<h2>Start Date:" . htmlentities($x["startDate"]) . "</h2>";
+        echo "<h2>End Date:" . htmlentities($x["endDate"]) . "</h2>";
+        echo "<h2>Venue:" . htmlentities($x["venue"]) . "</h2>";
+        echo "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
 }
 ?>
     </div>

@@ -21,7 +21,6 @@ class User
     }
     public static function prepare_insert()
     {
-        User::createUserDB();
         $insert_statement = "INSERT INTO user(firstName,lastName,email,pass,phone) VALUES (:firstName,:lastName,:email,:pass,:phone)";
         $rs               = User::$db->prepareAndReturn($insert_statement);
         if ($rs) {

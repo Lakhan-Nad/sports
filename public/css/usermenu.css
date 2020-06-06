@@ -7,13 +7,11 @@ body {
   margin-top: -200px;
 }
 
-img {
+#profile {
   width: 250px;
   height: 250px;
   border: 1px solid black;
   border-radius: 50%;
-  box-shadow: -1px 1px #000000, -2px 2px #000000, -3px 3px #000000,
-    -4px 4px #000000, -5px 5px #000000;
 }
 
 #logoutButton {
@@ -26,21 +24,41 @@ img {
   text-align: center;
 }
 
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 a {
   color: black;
   text-align: center;
 }
 
-#sportPhoto {
+img {
   width: 200px;
   height: 200px;
   border: 1px solid black;
   border-radius: 50%;
-  margin-left: 500px;
 }
 
-#details {
-  float: right;
-  margin-right: 600px;
-  margin-top: 20px;
+td {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+tr {
+  display: block;
+  width: max-content;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 50px;
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+h2 {
+  text-align: justify;
 }

@@ -8,6 +8,7 @@ function dataFetch()
 {
     global $data;
     global $db;
+    $data = array();
 
     $rs = $db->fullFetch("SELECT * FROM faq");
 
