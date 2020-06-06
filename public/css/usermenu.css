@@ -1,0 +1,46 @@
+body {
+  background-color: #d3d3d3;
+}
+
+#participantDescription {
+  margin-left: 300px;
+  margin-top: -200px;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  border-radius: 50%;
+  box-shadow: -1px 1px #000000, -2px 2px #000000, -3px 3px #000000,
+    -4px 4px #000000, -5px 5px #000000;
+}
+
+#logoutButton {
+  float: right;
+  margin-top: -200px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+}
+
+a {
+  color: black;
+  text-align: center;
+}
+
+#sportPhoto {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-left: 500px;
+}
+
+#details {
+  float: right;
+  margin-right: 600px;
+  margin-top: 20px;
+}

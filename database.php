@@ -48,7 +48,8 @@ class Database
     public function fullExecute(string $sql)
     {
         try {
-            $stmt = $this->handler->prepare($sql)->execute();
+            $stmt = $this->handler->prepare($sql);
+            $stmt->execute();
             return true;
         } catch (Throwable $e) {
             throw $e;

@@ -4,17 +4,25 @@ require_once __DIR__ . "/configVars.php";
 $db      = new Database(...$DB_CONFIG);
 $message = "";
 $data;
-$rs = $db->fullFetch("SELECT * FROM faq");
+function dataFetch()
+{
+    global $data;
+    global $db;
 
-if (!$rs) {
-    $data = array();
-} else {
-    foreach ($rs as $obj) {
-        $obj["submitName"] = $obj["answer"] ? "Save Changes" : "Submit Answer";
-        $obj["answer"]     = $obj["answer"] ?? "";
-        $data[]            = $obj;
+    $rs = $db->fullFetch("SELECT * FROM faq");
+
+    if (!$rs) {
+        $data = array();
+    } else {
+        foreach ($rs as $obj) {
+            $obj["submitName"] = $obj["answer"] ? "Save Changes" : "Submit Answer";
+            $obj["answer"]     = $obj["answer"] ?? "";
+            $data[]            = $obj;
+        }
     }
 }
+
+dataFetch();
 
 if (isset($_POST["answerSubmit"])) {
     unset($_POST["answerSubmit"]);
@@ -34,6 +42,7 @@ if (isset($_POST["answerSubmit"])) {
         } else {
             $message = "Answer Successfully Updated";
         }
+        dataFetch();
     }
 } else if (isset($_POST["delQuestion"])) {
     unset($_POST["delQuestion"]);
@@ -45,6 +54,7 @@ if (isset($_POST["answerSubmit"])) {
     } else {
         $message = "Question Successfully Deleted";
     }
+    dataFetch();
 }
 
 ?>

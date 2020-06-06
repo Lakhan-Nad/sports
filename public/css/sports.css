@@ -98,3 +98,40 @@ div.content {
   top: 100px;
   transform: rotate(-60deg);
 } */
+
+table {
+  width: 80%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: large;
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+}
+
+td {
+  color: #c61d23;
+}
+
+table#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+
+table#t01 tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table#t01 th {
+  background-color: black;
+  color: white;
+}
